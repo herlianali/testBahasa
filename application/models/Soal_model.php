@@ -49,7 +49,6 @@ class Soal_model extends CI_Model
 	{
 		$query = $this->db->where('id',$id)
 						  ->update($table, $data);
-
 		if ($query) {
 			return true;
 		}else{
@@ -60,6 +59,22 @@ class Soal_model extends CI_Model
 	public function delete($table, $id)
 	{
 		$query = $this->db->where('$id',$id)
-						->delete($table);
+						  ->delete($table);
+	}
+
+	public function voice($table, $data, $id)
+	{
+		$query = $this->db->where('id',$id)
+						  ->update($table, $data);
+	}
+
+	public function voiceGet($jenis)
+	{
+		$where = array(
+			'status' 	=> "aktif",
+			'jenis_test' => $jenis,
+			);
+		$query = $this->db->get_where('listening', $where);
+		return $query->result();
 	}
 }

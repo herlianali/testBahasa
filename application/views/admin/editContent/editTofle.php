@@ -116,7 +116,7 @@
                   <th>
                     <td>Voice File</td>
                     <td>Status</td>
-                    <td>Aksi</td>
+                    <td>Hapus</td>
                   </th>
                 </thead>
                 <tbody>
@@ -128,9 +128,22 @@
                   <tr>
                     <td><?= $number++ ?></td>
                     <td><?= $vt->voice ?></td>
-                    <td><?= $vt->status ?></td>
                     <td>
-                      <button class="btn btn-primary btn-sm">on off</button>
+                      <?php 
+                      if ($vt->status == "aktif") {
+                      ?>
+                        <form action="<?= base_url('admin/statusVoi/').$vt->id ?>" method="post">
+                          <input type="hidden" name="status" value="tidak aktif">
+                          <button class="btn btn-success btn-sm" type="submit">Aktif</button>
+                        </form>
+                      <?}else{?>
+                        <form action="<?= base_url('admin/statusVoi/').$vt->id ?>" method="post">
+                          <input type="hidden" name="status" value="aktif">
+                          <button class="btn btn-primary btn-sm" type="submit">Tidak Aktif</button>
+                        </form>
+                      <?}?>
+                    </td>
+                    <td>
                       <a class="btn btn-danger btn-sm" href="<?= base_url('admin/hapusVoi/').$vt->id ?>">hapus</a>
                     </td>
                   </tr>

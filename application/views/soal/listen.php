@@ -15,16 +15,22 @@
                   <div class="card">
                     <div class="card-header card-header-danger text-center">
                       <h4 class="card-title">Test Tofle</h4>
-                      <p class="card-category"><?php echo $titleListen; ?></p>
+                      <p class="card-category"><?php echo $titleListen." ".$test; ?></p>
                     </div>
                     <div class="card-body">
                       <form action="<?= base_url().'Soal/tofleListenProses'; ?>" method="post">
                         <p>
-                          <embed src="Amnesia.mp3" autostart="true" loop="false" width="2" height="0" />
                           <?php 
+                          
+                            foreach ($voice as $v) {
+
+                          ?>
+                          <embed src="<?= base_url('asset/audio/').$v->voice ?>" autostart="true" loop="false" width="2" height="0"/>
+                          <? } ?>
+                          <?php
                             $no = 1;
                             foreach ($soalListen as $value) {
-                              echo $no++ .' .) '. $value->isi_soal;
+                              echo "<br>".$no++ .".) <br>";
                             
                           ?>
                           <div class="form-check form-check-radio">
@@ -35,6 +41,7 @@
                                       <span class="check"></span>
                                   </span>
                               </label>
+                              
                           </div>
                           <div class="form-check form-check-radio">
                               <label class="form-check-label" style="color: black; font-weight: bold;">
@@ -63,7 +70,7 @@
                                   </span>
                               </label>
                           </div>
-                        <?php }?>
+                        <?php } ?>
                         </p>
                         <button type="submit" class="btn btn-danger btn-sm">
                           Next Test <i class="material-icons">keyboard_arrow_right</i>

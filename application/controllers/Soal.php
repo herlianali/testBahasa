@@ -13,9 +13,16 @@ class Soal extends CI_Controller {
 
 	public function index()
 	{
+		if (empty($this->session->userdata('firstName'))) {
+			redirect('login');
+		}
+
+		$jenis = $this->session->userdata('jenisTest');
+		
 		$data = array(
 			'titleMulti' => "Multiple Choice",
 			'soalMulti'  => $this->Soal_model->getAll('soalpilihan'),
+			'test'		 => $jenis
 		);
 
 		$this->load->view('soal/index', $data);
@@ -35,22 +42,29 @@ class Soal extends CI_Controller {
 		}
 
 		$data = array(
-			'id_user' => $this->session->userdata('id'),//nilai masih statis
+			'id_user' => $this->session->userdata('id'),
 			'nilaiSP' => $nPilih,
 			'jenis'   => "tofle",
 		);
 
 		$this->Raport_model->store($data);
 		return redirect('soal/listen');
-		// echo "nilai multiple choice : ".$nPilih." <br>nilai listening : ".$nListen;
 
 	}
 
 	public function listen()
 	{
+		if (empty($this->session->userdata('firstName'))) {
+			redirect('login');
+		}
+
+		$jenis = $this->session->userdata('jenisTest');
+
 		$data = array(
-			'titleListen' => "Listening ",
-			'soalListen' => $this->Soal_model->getAll('soallistening'),
+			'titleListen' => "Listening",
+			'soalListen'  => $this->Soal_model->getAll('soallistening'),
+			'voice'		  => $this->Soal_model->voiceGet($jenis),
+			'test'		  => $jenis,
 		);
 		$this->load->view('soal/listen', $data);
 	}
@@ -69,12 +83,57 @@ class Soal extends CI_Controller {
 
 		$data = array(
 			'id_user' => $this->session->userdata('id'),
-			// 'nilaiSL' => $nListen,
-			'nilaiSL' => "45",
+			'nilaiSL' => $nListen,
 		);
 
 		$id = $data['id_user'];
 		$this->Raport_model->update($data, $id);
-		return redirect('dashboard/index');
+		if ($this->session->userdata('jenisTest') == "ielts") {
+			return redirect('soal/essay');
+			// echo "ielts";
+		}else{
+			return redirect('dashboard');
+			// echo "kosong";
+		}
+	}
+
+	public function essay()
+	{
+		if (empty($this->session->userdata('firstName'))) {
+			redirect('login');
+		}
+
+		$jenis = $this->session->userdata('jenisTest');
+
+		$data = array(
+			'titleEssay' => "Essay",
+			'soalEssay'  => $this->Soal_model->getAll('soalessay'),
+			'test'		  => $jenis,
+		);
+		$this->load->view('soal/essay', $data);
+	}
+
+	public function tofleEssayProses()
+	{
+		$essay = $this->Soal_model->getAll('soalessay');
+		$nEssay = 0;
+		foreach ($essay as $e) {
+			// $jawaban = $this->input->post('jawaban');
+			if ($this->input->post("jawaban".$e->id) == $e->jawaban) {
+				$nEssay = $nEssay + $e->point;
+			}else{
+				$nEssay = $nEssay + 0;
+			}
+		}
+
+		$data = array(
+			'id_user' 	 => $this->session->userdata('id'),
+			'nilaiSE' 	 => $nEssay,
+			'statusTest' => 'sudah',
+		);
+
+		$id = $data['id_user'];
+		$this->Raport_model->update($data, $id);
+		return redirect('dashboard');
 	}
 }

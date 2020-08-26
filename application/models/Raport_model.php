@@ -15,9 +15,23 @@ class Raport_model extends CI_Model
 
 	public function update($data, $id)
 	{
-		$query = $this->db->update("raport", $data, $id);
+		$query = $this->db->where('id', $id)
+						  ->update('raport', $data);
 		if ($query) {
 			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function getBy($id)
+	{
+		$query = $this->db->select('*')
+						  ->from('raport')
+						  ->where('id', $id)
+						  ->get();
+		if ($query) {
+			return $query->result();
 		}else{
 			return false;
 		}

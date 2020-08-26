@@ -6,9 +6,18 @@ class Materi_model extends CI_Model
 	public function getAll($table)
 	{
 		$query = $this->db->select("*")
-			->from($table)
-			->order_by("id","ASCE")
-			->get();
+						  ->from($table)
+						  ->order_by("id","ASCE")
+						  ->get();
+		return $query->result();
+	}
+
+	public function getBy($name)
+	{
+		$query = $this->db->select("*")
+						  ->from("materi")
+						  ->where("nama_mentor",$name)
+						  ->get();
 		return $query->result();
 	}
 

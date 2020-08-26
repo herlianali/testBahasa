@@ -174,11 +174,11 @@ class Admin extends CI_Controller {
 	// belum bisa creat update
 	function uploadFile()
 	{
-		// $this->load->helper('string');
-		// $randomString = random_string('alpha', 32);
+		$this->load->helper('string');
+		$randomString = random_string('alpha', 32);
 		$config['upload_path'] = './asset/audio';
 		$config['allowed_types'] = 'pcm|wav|aiff|mp3|aac';
-		// $config['file_name'] = 'post_'.time().'_'.$randomString;
+		$config['file_name'] = 'post_'.time().'_'.$randomString;
 		$config['max_size'] = '102400000';
 		$config['overwrite'] = true;
 
@@ -186,20 +186,35 @@ class Admin extends CI_Controller {
 		$fileUp = $this->upload->do_upload('voice');
 
 		if ($fileUp) {
-			return $file = $_FILES['voice']['name'];
+			return $file = $config['file_name'];
 		}
 
-		print_r(array('error' => $this->upload->display_errors()));
+		// print_r(array('error' => $this->upload->display_errors()));
 	}
 
 	public function uploadTof()
 	{
-		var_dump($this->uploadFile());
+		$data = array(
+			'voice' 	 => $this->uploadFile(),
+			'status' 	 => 'tidak aktif',
+			'jenis_test' => $this->input->post('jenis'),
+		);
+		$this->Soal_model->store('listening', $data);
+		redirect('admin/cTest');
 	}
 
 	public function hapusVoi($id)
 	{
 		$this->Soal_model->delete('listening',$id);
+		redirect('admin/eTest');
+	}
+
+	public function statusVoi($id)
+	{
+		$data = array(
+			'status' => $this->input->post('status'),
+		);
+		$this->Soal_model->voice('listening', $data, $id);
 		redirect('admin/eTest');
 	}
 

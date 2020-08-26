@@ -6,9 +6,9 @@ class Mentor_model extends CI_Model
 	public function getAll($table)
 	{
 		$query = $this->db->select("*")
-			->from($table)
-			->order_by("id","ASCE")
-			->get();
+						  ->from($table)
+						  ->order_by("id","ASCE")
+						  ->get();
 		return $query->result();
 	}
 

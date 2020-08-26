@@ -13,6 +13,10 @@ class User extends CI_Controller {
 
 	public function index()
 	{
+		if (empty($this->session->userdata('firstName'))) {
+			redirect('login');
+		}
+		
 		$this->load->view('login/index');
 	}
 
@@ -25,11 +29,17 @@ class User extends CI_Controller {
 			'jenisTest' => $this->input->post("jenisTest"),
 			'username'  => $this->input->post("username"),
 			'password'  => $this->input->post("password"),
+			'status'  	=> 'gratis',
 		);
 
 		// return var_dump($data);
 		$this->User_model->store($data);
 		$this->session->set_flashdata('Success', '<div class="alert alert-success alert-dismissible"> Selamat Datang di web Test Bahasa Arjuna Operasion. </div>');
 		redirect('dashboard');
+	}
+
+	public function pembayaran()
+	{
+
 	}
 }

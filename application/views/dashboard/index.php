@@ -25,14 +25,18 @@
                       <div class="col-md-7">
                         <div class="row">
                           <div class="col-md-9">                          
-                            <h4>Listening comprehension</h4>
-                            <h4>Gramer</h4>
-                            <h4>Reading comprehension</h4>
+                            <h4>Multiple Choice</h4>
+                            <h4>Listening</h4>
+                            <h4>Essay</h4>
                           </div>
                           <div class="col-md-3">
-                            <h4>: 500</h4>
-                            <h4>: 500</h4>
-                            <h4>: 500</h4>
+                            <?php foreach ($raport as $rap) {
+                            
+                            ?>
+                            <h4>: <?= $rap->nilaiSP ?></h4>
+                            <h4>: <?= $rap->nilaiSL ?></h4>
+                            <h4>: <?= $rap->nilaiSE ?></h4>
+                            <?} ?>
                           </div>
                         </div>
                       </div>

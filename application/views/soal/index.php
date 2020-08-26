@@ -14,7 +14,7 @@
                 <div class="col-md-8">
                   <div class="card">
                     <div class="card-header card-header-danger text-center">
-                      <h4 class="card-title">Test Tofle</h4>
+                      <h4 class="card-title">Test <?= $test ?></h4>
                       <p class="card-category"><?php echo $titleMulti; ?></p>
                     </div>
                     <div class="card-body">

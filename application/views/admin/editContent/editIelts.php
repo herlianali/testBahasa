@@ -154,7 +154,7 @@
                   <th>
                     <td>Voice File</td>
                     <td>Status</td>
-                    <td>Aksi</td>
+                    <td>Hapus</td>
                   </th>
                 </thead>
                 <tbody>
@@ -166,10 +166,23 @@
                   <tr>
                     <td><?= $numberI++ ?></td>
                     <td><?= $vi->voice ?></td>
-                    <td><?= $vi->status ?></td>
                     <td>
-                      <a class="btn btn-primary btn-sm" href="# $vi->id" data-toggle="modal">on off</a>
-                      <a class="btn btn-danger btn-sm" href="<?= base_url('admin/hapusVoi').$vi->id ?>">hapus</a>
+                      <?php 
+                      if ($vi->status == "aktif") {
+                      ?>
+                        <form action="<?= base_url('admin/statusVoi/').$vi->id ?>" method="post">
+                          <input type="hidden" name="status" value="tidak aktif">
+                          <button class="btn btn-success btn-sm" type="submit">Aktif</button>
+                        </form>
+                      <?}else{?>
+                        <form action="<?= base_url('admin/statusVoi/').$vi->id ?>" method="post">
+                          <input type="hidden" name="status" value="aktif">
+                          <button class="btn btn-primary btn-sm" type="submit">Tidak Aktif</button>
+                        </form>
+                      <?}?>
+                    </td>
+                    <td>
+                      <a class="btn btn-danger btn-sm" href="<?= base_url('admin/hapusVoi/').$vi->id ?>">hapus</a>
                     </td>
                   </tr>
                   <? } ?>

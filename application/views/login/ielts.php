@@ -9,8 +9,8 @@
         <div class="col-md-1"></div>
         <div class="col-md-10">
           <br><br>
-          <!-- <h1 class="display-2 text-center pb-2">IELTS TEST</h1> -->
-          <div class="alert alert-warning" <?= $display?>>
+          <!-- warning login salah password tidak bisa tampil -->
+          <div class="alert alert-warning" <?= $display?> >
             <div class="container">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
@@ -83,7 +83,7 @@
                       </form>
                     </div>
                     <div class="tab-pane" id="login">
-                      <form action="<?php echo base_url().'login/login'; ?>" method="POST">
+                      <form action="<?php echo base_url('login/auth'); ?>" method="POST">
                         <div class="row">
                           <div class="col-md-12">
                             <br><br><br>

@@ -23,9 +23,9 @@ class Snap extends CI_Controller {
     {
         parent::__construct();
 
-        header("Access-Control-Allow-Origin: *")
-        header("Access-Control-Allow-Methods: PUT, GET, POST")
-        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept")
+        // header("Access-Control-Allow-Origin: *")
+        // header("Access-Control-Allow-Methods: PUT, GET, POST")
+        // header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept")
 
         $params = array('server_key' => 'SB-Mid-server-hcxFVgGIbRGUelmf6xWvsq5O', 'production' => false);
 		$this->load->library('midtrans');
@@ -35,7 +35,7 @@ class Snap extends CI_Controller {
 
     public function index()
     {
-    	$this->load->view('checkout_snap');
+    	$this->load->view('midtrans/checkout_snap');
     }
 
     public function token()
