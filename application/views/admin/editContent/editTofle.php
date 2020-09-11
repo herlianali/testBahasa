@@ -64,7 +64,7 @@
                       <a class="btn btn-danger btn-sm" href="<?= base_url('admin/hapusSP/').$pt->id ?>">Hapus</a>
                     </td>
                   </tr>
-                <? } ?>
+                <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -103,7 +103,7 @@
                       <a class="btn btn-danger btn-sm" href="<?= base_url('admin/hapusL/').$lt->id ?>">Hapus</a>
                     </td>
                   </tr>
-                <? } ?>
+                <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -136,18 +136,18 @@
                           <input type="hidden" name="status" value="tidak aktif">
                           <button class="btn btn-success btn-sm" type="submit">Aktif</button>
                         </form>
-                      <?}else{?>
+                      <?php }else{ ?>
                         <form action="<?= base_url('admin/statusVoi/').$vt->id ?>" method="post">
                           <input type="hidden" name="status" value="aktif">
                           <button class="btn btn-primary btn-sm" type="submit">Tidak Aktif</button>
                         </form>
-                      <?}?>
+                      <?php } ?>
                     </td>
                     <td>
                       <a class="btn btn-danger btn-sm" href="<?= base_url('admin/hapusVoi/').$vt->id ?>">hapus</a>
                     </td>
                   </tr>
-                  <? } ?>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

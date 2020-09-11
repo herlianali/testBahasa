@@ -11,6 +11,7 @@ class Admin extends CI_Controller {
 		$this->load->model('Soal_model');
 		$this->load->model('Mentor_model');
 		$this->load->model('Materi_model');
+		$this->load->model('hargaPembelajaran_model');
 		$this->load->helper('form','url');
 	}
 
@@ -343,5 +344,47 @@ class Admin extends CI_Controller {
 	}
 	// end of mentor block
 	// upload file nggak bisa
+
+
+	// blok setting pembayaran
+	public function listSetPembayaran()
+	{
+		$data = array(
+			'pembayaran' => $this->hargaPembelajaran_model->getAll("hargaPembelajaran"),
+		);
+
+		$this->load->view('admin/hargaPembelajaran', $data);
+	}
+
+	public function hapusSetPembayaran($id)
+	{
+		$this->hargaPembelajaran_model->delete("hargaPembelajaran",$id);
+		redirect('admin/listSetPembayaran');
+	}
+
+	public function editSetPembayaran($id)
+	{
+		$data = array(
+			'nama_paket' => $this->input->post("nama"),
+			'kelebihan'  => $this->input->post("kelebihan"),
+			'harga'		 => $this->input->post("harga"),
+		);
+
+		$this->hargaPembelajaran_model->edit("hargaPembelajaran", $id, $data);
+		redirect("admin/listSetPembayaran");
+	}
+
+	public function inputSetPembayaran()
+	{
+		$data = array(
+			'nama_paket' => $this->input->post("nama"),
+			'kelebihan'  => $this->input->post("kelebihan"),
+			'harga'		 => $this->input->post("harga"),
+		);
+
+		$this->hargaPembelajaran_model->input("hargaPembelajaran",$data);
+		redirect("admin/listSetPembayaran");
+	}
+	// end of setting pembayaran blok
 
 }

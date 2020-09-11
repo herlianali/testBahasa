@@ -22,9 +22,11 @@
           <p>Learning</p>
         </a>
       </li>
-      <?}else{
-        
-      } ?>
+      <?php
+        }else{
+            
+        }
+      ?>
       <li class="nav-item <?php echo $this->uri->segment(1) == 'soal' ? 'active': '' ?>">
         <a class="nav-link" href="<?php echo site_url('soal') ?>">
           <i class="material-icons">library_books</i>

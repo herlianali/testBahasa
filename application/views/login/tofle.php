@@ -70,6 +70,10 @@
                               <input type="text" class="form-control" name="email">
                             </div><br>
                             <div class="form-group">
+                              <label class="bmd-label-floating">Nomer</label>
+                              <input type="text" class="form-control" name="nomer">
+                            </div><br>
+                            <div class="form-group">
                               <label class="bmd-label-floating">Username</label>
                               <input type="text" class="form-control" name="username">
                             </div><br>

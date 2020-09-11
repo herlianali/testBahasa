@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Raport_model');
+		$this->load->model('HargaPembelajaran_model');
 	}
 
 	public function index()
@@ -20,6 +21,7 @@ class Dashboard extends CI_Controller {
 
 		$data = array(
 				'raport' => $this->Raport_model->getBy($id),
+				'harga'	 => $this->HargaPembelajaran_model->getAll("hargaPembelajaran"),
 				'name'	 => $name,
 		);
 		

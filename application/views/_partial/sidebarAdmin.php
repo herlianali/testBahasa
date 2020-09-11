@@ -61,6 +61,24 @@
           </ul>
         </div>
       </li>
+      <li class="nav-item <?php echo $this->uri->segment(2) == 'listSetPembayaran' ? 'active': '' ?>">
+        <a class="nav-link" data-toggle="collapse" href="#setting">
+          <i class="material-icons">settings</i>
+          <p>Setting
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse <?php echo $this->uri->segment(2) == 'listSetPembayaran' ? 'show': '' ?>" id="setting">
+          <ul class="nav">
+            <li class="nav-item <?php echo $this->uri->segment(2) == 'listSetPembayaran' ? 'active': '' ?>">
+              <a href="<?php echo base_url('admin/listSetPembayaran')?>" class="nav-link">
+                <span class="sidebar-mini">LB</span>
+                <span class="sidebar-normal">List Bayar</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </div>
 </div>

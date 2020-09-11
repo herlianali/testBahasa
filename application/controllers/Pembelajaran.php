@@ -22,4 +22,6 @@ class Pembelajaran extends CI_Controller {
 		
 		$this->load->view('pembelajaran/index', $data);
 	}
+
+	
 }
