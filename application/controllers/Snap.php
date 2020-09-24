@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+ 
 class Snap extends CI_Controller {
 
 
@@ -35,40 +35,15 @@ class Snap extends CI_Controller {
 		  'gross_amount' => $harga->harga, // no decimal allowed for creditcard
 		);
 
-		// // Optional
-		$billing_address = array(
-		  'first_name'    => "Andri",
-		  'last_name'     => "Litani",
-		  'address'       => "Mangga 20",
-		  'city'          => "Jakarta",
-		  'postal_code'   => "16602",
-		  'phone'         => "081122334455",
-		  'country_code'  => 'IDN'
-		);
-
-		// Optional
-		$shipping_address = array(
-		  'first_name'    => "Obet",
-		  'last_name'     => "Supriadi",
-		  'address'       => "Manggis 90",
-		  'city'          => "Jakarta",
-		  'postal_code'   => "16601",
-		  'phone'         => "08113366345",
-		  'country_code'  => 'IDN'
-		);
-
 		$user = $this->User_model->getByRow($id_user);
 
-		// var_dump($user);
-		// die();
-		// Optional
 		$customer_details = array(
 		  'first_name'    => $user->firstName,
 		  'last_name'     => $user->lastName,
 		  'email'         => $user->email,
 		  'phone'         => $user->phone,
-		  'billing_address'  => $billing_address,
-		  'shipping_address' => $shipping_address
+		  // 'billing_address'  => $billing_address,
+		  // 'shipping_address' => $shipping_address
 		);
 
 		// Data yang akan dikirim untuk request redirect_url.
@@ -79,7 +54,7 @@ class Snap extends CI_Controller {
         $time = time();
         $custom_expiry = array(
             'start_time' => date("Y-m-d H:i:s O",$time),
-            'unit' => 'minute', 
+            'unit' => 'day', 
             'duration'  => 2
         );
         
@@ -99,10 +74,8 @@ class Snap extends CI_Controller {
 
     public function finish()
     {
-    	$result = json_decode($this->input->post('result_data'));
-    	echo 'RESULT <br><pre>';
-    	var_dump($result);
-    	echo '</pre>' ;
-
+    	$result = json_decode($this->input->post('result_data'), TRUE);
+    	
+    	redirect('dashboard/index',$result);
     }
 }

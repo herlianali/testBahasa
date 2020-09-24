@@ -26,7 +26,7 @@
 
                           ?>
                           <embed src="<?= base_url('asset/audio/').$v->voice ?>" autostart="true" loop="false" width="2" height="0"/>
-                          <? } ?>
+                          <?php } ?>
                           <?php
                             $no = 1;
                             foreach ($soalListen as $value) {

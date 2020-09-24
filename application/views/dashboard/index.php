@@ -12,6 +12,12 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
+
+            <form id="payment-form" method="post" action="<?=site_url()?>snap/finish">
+              <input type="hidden" name="result_type" id="result-type" value=""></div>
+              <input type="hidden" name="result_data" id="result-data" value=""></div>
+            </form>
+
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-danger">
@@ -19,75 +25,88 @@
                   <p class="card-category">All Test</p>
                 </div>
                 <div class="card-body">
-                  <div class="container-fluid">                  
+                  <div class="container-fluid">
                     <p>
-                      Telah selesai mengerjakan test yang diberikan dan mendapatkan skor sebesar
+                      Has finished working on the test given and got a score of
                     </p>
                     <div class="row">
-                      <!-- <div class="col-md-1"></div> -->
                       <div class="col-md-7">
                         <div class="row">
-                          <div class="col-md-9">                          
-                            <h4>Multiple Choice</h4>
-                            <h4>Listening</h4>
-                            <h4>Essay</h4>
-                          </div>
-                          <div class="col-md-3">
                             <?php
                              foreach ($raport as $rap) {
                             
                             ?>
+                          <div class="col-md-9">                          
+                            <h4>Multiple Choice</h4>
+                            <h4>Listening</h4>
+                            <?php if ($rap->jenis == 'ielts') {
+
+                            ?>
+                            <h4>Essay</h4>
+                            <?php }else{
+
+                            } ?>
+                          </div>
+                          <div class="col-md-3">
                             <h4>: <?= $rap->nilaiSP ?></h4>
                             <h4>: <?= $rap->nilaiSL ?></h4>
-                            <h4>: <?= $rap->nilaiSE ?></h4>
+                            <?php if ($rap->jenis == 'ielts') {
+                              
+                            ?>
+                              <h4>: <?= $rap->nilaiSE ?></h4>
+                            <?php }else{
+
+                            } ?>
                             <?php } ?>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-5">
                         <br>
-                        <button class="btn btn-info btn-lg" disabled="">Cetak Sertifikat</button>
+                        <button class="btn btn-info btn-lg" disabled="">Print Certificate</button>
                       </div>
                     </div>
                     <br>
                     <p>
-                      Jika kamu ingin mendapatkan tips dan trik cek harga dibawah untuk mendapatkan akses video pembelajaran
+                      If you want to get tips and tricks, check the prices below to get access to learning videos
                     </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h3 class="card-title">Promotion Price Of Learning Lession</h3>
-                  <p class="card-category">Category</p>
-                </div>
-                <div class="card-body">
-                  <div class="container-fluid">
-                    <h5>Silahkan pilih paket yang sesuai dan segera lengkapi pembayaran pada pop up pembayaran yang ada</h5>
-                    <div class="row">
-                      <?php 
-                        $no = 1;
-                        foreach ($harga as $har) {
-                      ?>
-                        <div class="col-md-4">
-                          <div class="card">
-                            <div class="card-header card-header-warning ">
-                              <h4 class="card-title" align="center"><?= $har->nama_paket ?></h4>
-                              <p class="category" align="center">Category <?= $no++ ?></p>
-                            </div>
-                            <div class="card-body">
-                              <h3 align="center">Rp <?= $har->harga ?></h3>
-                              <span><?= $har->kelebihan ?></span>
-                              <button id="pay-button<?php echo $har->id_harga?>" class="btn btn-success btn-sm text-white">Daftar</button>
+           
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header card-header-primary">
+                    <h3 class="card-title">Promotion Price Of Learning Lession</h3>
+                    <p class="card-category">Category</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="container-fluid">
+                      <h5>Please select the appropriate package and immediately complete the payment on the existing payment pop-up</h5>
+                      <div class="row">
+                        <?php 
+                          $no = 1;
+                          foreach ($harga as $har) {
+                        ?>
+                          <div class="col-md-4">
+                            <div class="card">
+                              <div class="card-header card-header-warning ">
+                                <h4 class="card-title" align="center"><?= $har->nama_paket ?></h4>
+                                <p class="category" align="center">Category <?= $no++ ?></p>
+                              </div>
+                              <div class="card-body">
+                                <h3 align="center">Rp <?= $har->harga ?></h3>
+                                <span><?= $har->kelebihan ?></span>
+                                <button id="pay-button<?php echo $har->id_harga?>" class="btn btn-success btn-sm text-white">Daftar</button>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      <?php } ?>
+                        <?php } ?>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -102,7 +121,6 @@
     <?php $this->load->view("_partial/js") ?>
 <?php
 foreach ($harga as $a) {
-  
 ?>
 
     <script type="text/javascript">

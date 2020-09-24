@@ -80,6 +80,8 @@
             $(this).attr("disabled", "disabled");
 
             var telp = $("#telp").val();
+            var telp = $("#telp").val();
+            var telp = $("#telp").val();
             var email = $("#email").val();
 
             $.ajax({
