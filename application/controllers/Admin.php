@@ -387,4 +387,9 @@ class Admin extends CI_Controller {
 	}
 	// end of setting pembayaran blok
 
+	public function pembayaranSet()
+	{
+		$this->load->view('admin/pembayaran');
+	}
+
 }

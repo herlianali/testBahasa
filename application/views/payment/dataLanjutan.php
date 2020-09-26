@@ -16,52 +16,62 @@
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-danger">
-                  <h4 class="card-title">Data Participant</h4>
-                  <p class="card-category">Complate it your data for your registration</p>
+                  <h4 class="card-title">Payment Status</h4>
+                  <p class="card-category">cek your payment status below</p>
                 </div>
                 <div class="card-body">
-                  <?php foreach ($userData as $data) {
-
-                  ?>
-                  <form action="<?php echo base_url('') ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label class="bmd-label-floating">First Name</label>
-                      <input type="text" class="form-control" name="first_name" value="<?= $data->firstName ?>" id="firstName" >
-                    </div><br>
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Last Name</label>
-                      <input type="text" class="form-control" name="last_name" value="<?= $data->lastName?>" id="lastName" >
-                    </div><br>
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Email</label>
-                      <input type="text" class="form-control" name="email" value="<?= $data->email ?>" id="email" >
-                    </div><br>
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Address</label>
-                      <input type="text" class="form-control" name="address" value="<?= $data->address ?>" id="address" >
-                    </div><br>
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Phone Number</label>
-                      <input type="text" class="form-control" name="phone_number" value="<?= $data->phone ?>" id="phone" >
-                    </div><br>
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Date of Birth</label>
-                      <input type="text" class="form-control" name="DOB" value="<?= $data->dateBirth ?>" id="dob" >
-                    </div><br>
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Education</label>
-                      <input type="text" class="form-control" name="education" value="<?= $data->education ?>" id="education" >
-                    </div><br>
-                    <!-- <div class="form-control"> -->
-                      <label>Photo</label><br>
-                      <input type="file" name="photo" class="form-control">
-                    <!-- </div> -->
-                    <br><br>
-                    <button type="submit" name="send" id="pay-button" class="btn btn-danger btn-round">
-                      Send Data
-                    </button>
-                  </form>
-                  <?php } ?>
+                  <table class="table table-hover">
+                    <tr>
+                      <td>Student Name</td>
+                      <td>:</td>
+                      <td><?php echo $payment->name_student ?></td>
+                    </tr>
+                    <tr>
+                      <td>Status Message</td>
+                      <td>:</td>
+                      <td><?php echo $payment->status_message ?></td>
+                    </tr>
+                    <tr>
+                      <td>Transaction</td>
+                      <td>:</td>
+                      <td><?php echo $payment->transaction_id ?></td>
+                    </tr>
+                    <tr>
+                      <td>Bank</td>
+                      <td>:</td>
+                      <td><?php echo $payment->bank ?></td>
+                    </tr>
+                    <tr>
+                      <td>Va Number</td>
+                      <td>:</td>
+                      <td><?php echo $payment->va_number ?></td>
+                    </tr>
+                    <tr>
+                      <td>Order Id</td>
+                      <td>:</td>
+                      <td><?php echo $payment->order_id ?></td>
+                    </tr>
+                    <tr>
+                      <td>Total Paymant</td>
+                      <td>:</td>
+                      <td><?php echo $payment->gross_amount ?></td>
+                    </tr>
+                    <tr>
+                      <td>Time Transaction</td>
+                      <td>:</td>
+                      <td><?php echo $payment->transaction_time ?></td>
+                    </tr>
+                    <tr>
+                      <td>Status</td>
+                      <td>:</td>
+                      <td><?php echo $payment->transaction_status ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight: bold">if you have completed the payment but the payment status has not changed, try clicking the button beside</td>
+                      <td></td>
+                      <td><a class="btn btn-success" href="<?= base_url('snap/status/').$payment->order_id; ?>">Update Status Payment</a></td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
@@ -73,63 +83,5 @@
     </div>
   </div>
     <?php $this->load->view("_partial/js") ?>
-
-    <script type="text/javascript">
-        $('#pay-button').click(function(event) {
-            event.preventDefault();
-            $(this).attr("disabled", "disabled");
-
-            var telp = $("#telp").val();
-            var telp = $("#telp").val();
-            var telp = $("#telp").val();
-            var email = $("#email").val();
-
-            $.ajax({
-                method: 'POST',
-                url: '<?= site_url() ?>snap/token',
-                data: {
-                    telp: telp,
-                    email: email
-                },
-                cache: false,
-
-                success: function(data) {
-                    //location = data;
-
-                    console.log('token = ' + data);
-
-                    var resultType = document.getElementById('result-type');
-                    var resultData = document.getElementById('result-data');
-
-                    function changeResult(type, data) {
-                        $("#result-type").val(type);
-                        $("#result-data").val(JSON.stringify(data));
-                        //resultType.innerHTML = type;
-                        //resultData.innerHTML = JSON.stringify(data);
-                    }
-
-                    snap.pay(data, {
-
-                        onSuccess: function(result) {
-                            changeResult('success', result);
-                            console.log(result.status_message);
-                            console.log(result);
-                            $("#payment-form").submit();
-                        },
-                        onPending: function(result) {
-                            changeResult('pending', result);
-                            console.log(result.status_message);
-                            $("#payment-form").submit();
-                        },
-                        onError: function(result) {
-                            changeResult('error', result);
-                            console.log(result.status_message);
-                            $("#payment-form").submit();
-                        }
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>

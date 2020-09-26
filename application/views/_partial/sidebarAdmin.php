@@ -68,12 +68,18 @@
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse <?php echo $this->uri->segment(2) == 'listSetPembayaran' ? 'show': '' ?>" id="setting">
+        <div class="collapse <?php echo $this->uri->segment(2) == 'listSetPembayaran' || $this->uri->segment(2) == 'pembayaranSet' ? 'show': '' ?>" id="setting">
           <ul class="nav">
             <li class="nav-item <?php echo $this->uri->segment(2) == 'listSetPembayaran' ? 'active': '' ?>">
               <a href="<?php echo base_url('admin/listSetPembayaran')?>" class="nav-link">
                 <span class="sidebar-mini">LB</span>
-                <span class="sidebar-normal">List Bayar</span>
+                <span class="sidebar-normal">List Harga</span>
+              </a>
+            </li>
+            <li class="nav-item <?php echo $this->uri->segment(2) == 'pembayaranSet' ? 'active': '' ?>">
+              <a href="<?php echo base_url('admin/pembayaranSet')?>" class="nav-link">
+                <span class="sidebar-mini">SP</span>
+                <span class="sidebar-normal">Set Pembayaran</span>
               </a>
             </li>
           </ul>

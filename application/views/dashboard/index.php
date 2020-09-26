@@ -86,7 +86,7 @@
                   </div>
                   <div class="card-body">
                     <div class="container-fluid">
-                      <h5>Please select the appropriate package and immediately complete the payment on the existing payment pop-up</h5>
+                      <h5>Please select the appropriate package and immediately complete the payment on the existing payment pop-up. Payment confirmation will be made one day after payment</h5>
                       <div class="row">
                         <?php 
                           $no = 1;

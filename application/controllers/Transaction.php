@@ -22,7 +22,7 @@ class Transaction extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $params = array('server_key' => 'your_server_key', 'production' => false);
+        $params = array('server_key' => 'SB-Mid-server-hcxFVgGIbRGUelmf6xWvsq5O', 'production' => false);
 		$this->load->library('veritrans');
 		$this->veritrans->config($params);
 		$this->load->helper('url');
@@ -31,7 +31,7 @@ class Transaction extends CI_Controller {
 
     public function index()
     {
-    	$this->load->view('transaction');
+    	$this->load->view('midtrans/transaction');
     }
 
     public function process()
