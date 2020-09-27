@@ -94,6 +94,41 @@ INSERT INTO `mentor` (`id`, `nama`, `alamat`, `nomer_tlp`, `photo`) VALUES
 (19,	'm,alskdal',	'kljakjsakld',	'10-239',	'4cc9a79e0180151e260cb0583530d7'),
 (20,	'ASD',	'452dasdasda',	'0909090909',	'4cc9a79e0180151e260cb0583530d75a.png');
 
+DROP TABLE IF EXISTS `pembayaran`;
+CREATE TABLE `pembayaran` (
+  `order_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `transaction_time` datetime NOT NULL,
+  `transaction_status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `bank` varchar(20) NOT NULL,
+  `va_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `transaction_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `status_message` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `gross_amount` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_user` int NOT NULL,
+  `name_student` varchar(35) NOT NULL,
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `pembayaran` (`order_id`, `transaction_time`, `transaction_status`, `bank`, `va_number`, `transaction_id`, `status_message`, `gross_amount`, `id_user`, `name_student`) VALUES
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('1915542487',	'2020-09-26 21:40:24',	'pending',	'bca',	'25871764091',	'c2334d94-2b89-4589-b',	'Success, transaction is f',	'50000.00',	4,	'herlian aliyasa'),
+('125583726',	'2020-09-26 22:37:26',	'pending',	'bca',	'25871545709',	'862ad75b-76ce-449d-8',	'Success, transaction is f',	'100000.00',	4,	'herlian aliyasa'),
+('642584677',	'2020-09-26 22:40:59',	'pending',	'bca',	'25871085726',	'41a3a856-37f2-4941-a',	'Transaksi sedang diproses',	'50000.00',	4,	'herlian aliyasa'),
+('222553497',	'2020-09-26 22:48:12',	'pending',	'bca',	'25871871594',	'457947ea-4346-4340-8',	'Transaksi sedang diproses',	'150000.00',	4,	'herlian aliyasa'),
+('32456240',	'2020-09-26 22:48:38',	'settlement',	'bca',	'25871147751',	'58e581d1-631f-4e42-9',	'Success, transaction is f',	'150000.00',	4,	'herlian aliyasa');
+
 DROP TABLE IF EXISTS `raport`;
 CREATE TABLE `raport` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -111,10 +146,10 @@ CREATE TABLE `raport` (
 INSERT INTO `raport` (`id`, `id_user`, `nilaiSP`, `nilaiSL`, `nilaiSE`, `jenis`, `statusTest`) VALUES
 (1,	3,	'40',	'',	'',	'tofle',	''),
 (3,	5,	'75',	'',	'',	'tofle',	''),
-(4,	5,	'0',	'',	'',	'tofle',	''),
-(5,	5,	'0',	'0',	'0',	'tofle',	'sudah'),
+(4,	4,	'0',	'80',	'',	'tofle',	''),
+(5,	5,	'0',	'80',	'0',	'tofle',	'sudah'),
 (6,	5,	'0',	'',	'',	'tofle',	''),
-(7,	5,	'0',	'',	'',	'tofle',	''),
+(7,	7,	'0',	'0',	'',	'tofle',	''),
 (8,	4,	'0',	'',	'',	'tofle',	''),
 (9,	5,	'0',	'',	'',	'tofle',	''),
 (10,	5,	'0',	'',	'',	'tofle',	''),
@@ -124,7 +159,17 @@ INSERT INTO `raport` (`id`, `id_user`, `nilaiSP`, `nilaiSL`, `nilaiSE`, `jenis`,
 (14,	5,	'0',	'',	'',	'tofle',	''),
 (15,	5,	'0',	'',	'',	'tofle',	''),
 (16,	5,	'0',	'',	'',	'tofle',	''),
-(17,	5,	'0',	'',	'',	'tofle',	'');
+(17,	5,	'0',	'',	'',	'tofle',	''),
+(18,	7,	'115',	'',	'',	'tofle',	''),
+(19,	7,	'0',	'',	'',	'tofle',	''),
+(20,	7,	'0',	'',	'',	'tofle',	''),
+(21,	7,	'0',	'',	'',	'tofle',	''),
+(22,	7,	'0',	'',	'',	'tofle',	''),
+(23,	7,	'0',	'',	'',	'tofle',	''),
+(24,	4,	'0',	'',	'',	'tofle',	''),
+(25,	4,	'0',	'',	'',	'tofle',	''),
+(26,	4,	'35',	'',	'',	'tofle',	''),
+(27,	5,	'120',	'',	'',	'tofle',	'');
 
 DROP TABLE IF EXISTS `soalessay`;
 CREATE TABLE `soalessay` (
@@ -200,6 +245,7 @@ INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `address`, `phone`,
 (3,	'asdasd',	'askldjalsk',	'lkjasldk',	'',	'',	'',	'',	'',	'',	'',	'alksjdl',	'123456789'),
 (4,	'herlian',	'aliyasa',	'herlianali@yahoo.co.id',	'',	'',	'',	'',	'',	'tofle',	'gratis',	'wadau',	'icimonji'),
 (5,	'test',	'test',	'test@yahoo.co.id',	'',	'',	'',	'',	'',	'ielts',	'berbayar',	'test',	'test12345'),
-(6,	'asdasd',	'asda',	'qweq',	'',	'123456789',	'',	'',	'',	'tofle',	'gratis',	'123',	'123');
+(6,	'asdasd',	'asda',	'qweq',	'',	'123456789',	'',	'',	'',	'tofle',	'gratis',	'123',	'123'),
+(7,	'herlian aliyasa',	'almaj duddin',	'herlianali@yahoo.co.id',	'',	'0809284726571',	'',	'',	'',	'tofle',	'gratis',	'herlian',	'123');
 
--- 2020-09-11 22:37:31
+-- 2020-09-27 11:48:42
